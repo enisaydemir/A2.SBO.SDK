@@ -4,31 +4,6 @@
 
 ---
 
-## 🟢 Solution Yapısı
-
-A2.SBO.SDK/
-│
-├── MockServiceLayer/ # Test amaçlı sahte SAP Service Layer API
-│ ├── Controllers/
-│ │ ├── LoginController.cs
-│ │ ├── BusinessPartnersController.cs
-│ │ └── OrdersController.cs
-│ └── Program.cs
-│
-└── SapIntegrationApi/ # Mock veya gerçek SAP’a bağlanan backend
-├── Controllers/
-│ ├── CustomersController.cs
-│ └── OrdersController.cs
-├── Services/
-│ └── SapServiceLayerClient.cs
-├── DTOs/
-│ ├── CustomerDto.cs
-│ └── OrderDto.cs
-└── Program.cs
-
-
----
-
 ## 🟢 Özellikler
 
 - **MockServiceLayer**
