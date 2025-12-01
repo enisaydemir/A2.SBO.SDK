@@ -4,7 +4,7 @@ namespace MockServiceLayer.Controllers
 {
     [ApiController]
     [Route("b1s/v1/[controller]")]
-    public class LoginController : Controller
+    public class LoginController : ControllerBase
     {
         [HttpPost]
         public IActionResult Login([FromBody] object body)

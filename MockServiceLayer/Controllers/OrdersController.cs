@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MockServiceLayer.DTOs;
 
 namespace MockServiceLayer.Controllers
 {
@@ -9,7 +10,7 @@ namespace MockServiceLayer.Controllers
         private static readonly List<dynamic> _orders = new();
 
         [HttpPost]
-        public IActionResult CreateOrder([FromBody] dynamic body)
+        public IActionResult CreateOrder([FromBody] OrderDto body)
         {
             body.DocEntry = _orders.Count + 1;
             _orders.Add(body);
