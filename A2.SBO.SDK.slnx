@@ -1,1 +1,4 @@
-<Solution />
+<Solution>
+  <Project Path="MockServiceLayer/MockServiceLayer.csproj" />
+  <Project Path="SapIntegrationApi/SapIntegrationApi.csproj" />
+</Solution>
