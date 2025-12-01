@@ -10,15 +10,15 @@ namespace MockServiceLayer.Controllers
         private static readonly List<dynamic> _orders = new();
 
         [HttpPost]
-        public IActionResult CreateOrder([FromBody] OrderDto body)
+        public IActionResult CreateOrder([FromBody] OrderDto dto)
         {
-            body.DocEntry = _orders.Count + 1;
-            _orders.Add(body);
+            dto.DocEntry = _orders.Count + 1;
+            _orders.Add(dto);
 
             return Ok(new
             {
                 Result = "Mock Order created!",
-                Data = body
+                Data = dto
             });
         }
 

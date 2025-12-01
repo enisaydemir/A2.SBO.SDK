@@ -13,20 +13,16 @@ namespace SapIntegrationApi.Services
         public SapServiceLayerClient(HttpClient httpClient, IConfiguration config)
         {
             _httpClient = httpClient;
-            _baseUrl = config["Sap:BaseUrl"] ?? "https://localhost:5001/b1s/v1"; //Mock Url
+            _baseUrl = config["Sap:BaseUrl"] ?? "https://localhost:7028/b1s/v1"; //Mock Url
         }
 
         public async Task LoginAsync()
         {
-            var loginData = new { UserName = "manager", Password = "1234", CompanyDB = "SBODemo" };
-            var content = new StringContent(JsonSerializer.Serialize(loginData), Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsJsonAsync($"{_baseUrl}/Login", new { });
+            response.EnsureSuccessStatusCode();
 
-            var response = await _httpClient.PostAsync($"{_baseUrl}/login", content);
-            var json = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize < Dictionary<string, object>>(json);
-
-            _sessionId = result["SessionId"].ToString();
-            _httpClient.DefaultRequestHeaders.Add("Cookie", $"B1SESSION={_sessionId}");
+            var loginResult = await response.Content.ReadFromJsonAsync<LoginResponseDto>();
+            _sessionId = loginResult.SessionId;
         }
 
         public async Task<string> CreateCustomer(CustomerDto dto)
